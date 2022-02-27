@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:foodie_fiti/configurations/config.dart';
+import 'package:foodie_fiti/home/food_page_body.dart';
+import 'package:foodie_fiti/widgets/big_text.dart';
+import 'package:foodie_fiti/widgets/small_text.dart';
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({Key? key}) : super(key: key);
@@ -10,24 +14,53 @@ class MainFoodPage extends StatefulWidget {
 class _MainFoodPageState extends State<MainFoodPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Container(
-        child: Row(
+    Config().init(context);
+    return Scaffold(
+      body: SafeArea(
+        child: Column(
           children: [
-            Column(
-              children: [
-                Text("Country"),
-                Text("City"),
-              ],
-            ),
             Container(
-              height: 45,
-              width: 45,
-              decoration: BoxDecoration(
-                color: Colors.blue,
-                borderRadius: BorderRadius.circular(15),
+              child: Container(
+                padding: screenPadding,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Column(
+                      children: [
+                        BigText(
+                          text: "Kenya",
+                          color: AppColors.mainColor,
+                        ),
+                        Row(
+                          children: [
+                            SmallText(
+                              text: "Bomet",
+                              color: Colors.black54,
+                            ),
+                            Icon(Icons.arrow_drop_down_rounded)
+                          ],
+                        )
+                      ],
+                    ),
+                    Center(
+                      child: Container(
+                        height: 45,
+                        width: 45,
+                        decoration: BoxDecoration(
+                          color: AppColors.mainColor,
+                          borderRadius: BorderRadius.circular(15),
+                        ),
+                        child: const Icon(
+                          Icons.search,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
               ),
-            )
+            ),
+            FoodPageBody(),
           ],
         ),
       ),
